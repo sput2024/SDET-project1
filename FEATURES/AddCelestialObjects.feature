@@ -28,9 +28,13 @@ Feature: Add Planet and Moon Data
     And the user is redirected to the homepage
 
     Examples:
-      |Planetname                     |alert              |
-      |Cleopatra))!!                  |Invalid planet name|
-      |Zeusisthefarthestfromthesun    |Invalid planet name|
+      |Planetname                           |alert              |
+      |Cleopatra))!!                        |Invalid planet name|
+      |Zeusisthefarthestfromthesun123456    |Invalid planet name|
+
+
+
+
 
 
 
