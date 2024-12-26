@@ -40,28 +40,24 @@ public class AddCelestial {
     public void the_table_refreshes(String string) {
         // Write code here that turns the phrase above into concrete actions
         TestRunner.wait.until(ExpectedConditions.titleIs("Home"));
-      //  int rowsUpdated = TestRunner.homePage.getNumberOfCelestialRows();
-        //int expectedRows = rows+1;
-       // Assert.assertEquals(expectedRows,rowsUpdated);
-        Integer rows = TestRunner.homePage.getCelestialTableRowsSize();
-        //List<WebElement> cols = TestRunner.homePage.getCelestialCols(rows);
-        System.out.println(rows);
-     //   for (int i = 0; i < rows.size(); i++) {
-      //      if (rows.get(i).getText().equals(string)) {
-       //         System.out.println("it's working!!!");
-        //    }
-       // }
-        //List<String> newRow = new ArrayList<>(rows.get(1));
-        //System.out.println(rows.get(1).getText());
-        //System.out.println(rows);
-        System.out.println("testing");
-       // List<WebElement>  ols = rows.get(i).findElements(By.tagName("td"));
-       // Assert.assertEquals(string, driver.findElement(By.id(string)));
+
+        Integer rows = TestRunner.homePage.getNumberOfCelestialRows();
+        Integer cols = TestRunner.homePage.getCelestialTableColsSize();
+        List<WebElement> tCols = TestRunner.homePage.getCelestialTableCols();
+
+        for (int i = 0; i < tCols.size(); i++) {
+            if (tCols.get(i).getText().equals(string)) {
+                System.out.println("planet added successfully");
+                break;}
+        }
+
+
     }
     @Then("the user is redirected to the homepage")
     public void the_user_is_redirected_to_the_homepage() {
         // Write code here that turns the phrase above into concrete actions
-        Assert.assertEquals("Expected 'Welcome to the Home Page Batman", driver.findElement(By.tagName("h1")));
+        TestRunner.wait.until(ExpectedConditions.titleIs("Home"));
+        Assert.assertEquals("Welcome to the Home Page Batman", TestRunner.homePage.getHomePageGreeting());
     }
 
     @And("the user provides invalid planet data {string}")
