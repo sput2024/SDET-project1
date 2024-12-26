@@ -73,14 +73,16 @@ public class HomePage {
     }
 
 
-    public Integer getCelestialTableRowsSize(){
-        return tableRows.size();
+
+    public Integer getCelestialTableColsSize(){
+        return tableCols.size();
 
     }
 
-    //public List<WebElement> getCelestialCols(List <WebElement> tableRows){
-     //   tableCols = tableRows.get(0).findElements(By.tagName("td"));
-        //tableCols = tableRows.findElements(By.tagName("td"));
-      //  return tableCols;
-   // }
+    public List<WebElement> getCelestialTableCols(){
+        return tableCols;
+
+    }
+
+
 }
