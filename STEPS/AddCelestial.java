@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class AddCelestial {
 
     @When("the user selects the planet option")
     public void the_user_selects_the_planet_option() {
-
+        TestRunner.wait.until(ExpectedConditions.titleIs("Home"));
     Select dropdown = new Select(driver.findElement(By.id("locationSelect")));
     dropdown.selectByVisibleText("Planet");
     }
@@ -50,9 +51,24 @@ public class AddCelestial {
                 System.out.println("planet added successfully");
                 break;}
         }
-
-
     }
+    @Then("the table updates moonname {string}")
+    public void the_Table_Updates_Moonname(String arg0)  {
+        // Write code here that turns the phrase above into concrete actions
+        TestRunner.wait.until(ExpectedConditions.titleIs("Home"));
+
+        Integer rows = TestRunner.homePage.getNumberOfCelestialRows();
+        Integer cols = TestRunner.homePage.getCelestialTableColsSize();
+        List<WebElement> tCols = TestRunner.homePage.getCelestialTableCols();
+
+        for (int i = 0; i < tCols.size(); i++) {
+            if (tCols.get(i).getText().equals(arg0)) {
+                System.out.println("moon added successfully");
+                break;}
+        }
+    }
+
+
     @Then("the user is redirected to the homepage")
     public void the_user_is_redirected_to_the_homepage() {
         // Write code here that turns the phrase above into concrete actions
@@ -71,11 +87,46 @@ public class AddCelestial {
     public void the_user_should_get_a_browser_alert(String expectedMessage) {
         // Write code here that turns the phrase above into concrete actions
         TestRunner.wait.until(ExpectedConditions.alertIsPresent());
+        TestRunner.wait.until(ExpectedConditions.alertIsPresent());
+        TestRunner.wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = TestRunner.driver.switchTo().alert();
         Assert.assertEquals(expectedMessage, alert.getText());
         alert.accept();
+
     }
 
+    @Then("the user should get a browser alert for moon {string}")
+    public void the_user_should_get_a_browser_alert_for_moon(String expectedMessage) {
+        // Write code here that turns the phrase above into concrete actions
+        TestRunner.wait.until(ExpectedConditions.alertIsPresent());
+        TestRunner.wait.until(ExpectedConditions.alertIsPresent());
+        TestRunner.wait.until(ExpectedConditions.alertIsPresent());
+        Alert alert = TestRunner.driver.switchTo().alert();
+        Assert.assertEquals(expectedMessage, alert.getText());
+        alert.accept();
+
+    }
+
+    @When("the user selects the moon option")
+    public void the_user_selects_the_moon_option() {
+        TestRunner.wait.until(ExpectedConditions.titleIs("Home"));
+        Select dropdown = new Select(driver.findElement(By.id("locationSelect")));
+        dropdown.selectByVisibleText("Moon");
+    }
+
+    @And("the user provides a moonname {string}")
+    public void the_user_provides_a_moonname(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        TestRunner.homePage.enterMoonName(string);
+    }
+
+
+
+
+    @And("the user provides a planet id {string}")
+    public void the_user_provides_a_planet_id(String string) {
+        TestRunner.homePage.orbitedPlanetId(string);
+    }
 
 
 }

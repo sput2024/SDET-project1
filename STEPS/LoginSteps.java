@@ -25,21 +25,17 @@ public class LoginSteps {
     @Then("the password will never be visible in plain text")
     public void the_password_will_never_be_visible_in_plain_text() {
         // Write code here that turns the phrase above into concrete actions
-        System.out.println(TestRunner.driver.findElement(By.name("placeholder")).getAttribute("value"));
-        //File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        //Path screenshotDestination = Paths.get("src/main/resources/screenshot/screentemp.jpeg");
-        //try {
-        //    Files.copy(scrFile.toPath(),screenshotDestination);//,StandardCopyOption.REPLACE_EXISTING);
-        //} catch (IOException e) {
-         //   e.printStackTrace();
-       // }
-        //)passwordInput.getkeys();
-        //WebElement delayedElement = driver.findElement(By.tagName("hi"));
-        //System.out.println(delayedElement.getText());
-       // Files.copy(scrFile.toPath());//.screenshotPath, StandardCopyOption.REPLACE_EXISTING);
-        System.out.println("testing!!!");
 
-      //  File fileData = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        Path screenshotDestination = Paths.get("src/test/resources/screenshot/screentemp.jpeg");
+        try {
+            Files.copy(scrFile.toPath(),screenshotDestination,StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            e.printStackTrace();
+       }
+
+        System.out.println("See Screenshot");
+
     }
 
     @When("then the user has logged out of the secure environment")
