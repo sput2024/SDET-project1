@@ -17,19 +17,21 @@ Feature: Add Planet and Moon Data
       |Zeus-12 Aries_5   |
       |90Zeus-12 Aries_5 |
       |a                 |
+      |Aphrodite85       |
 
     Scenario Outline:  The user can only add moons with valid moon data
-    When the user provides new valid moonname "<Moonname>"
-      And the user provides new valid Planet ID "<PlanetId>"
+      When the user selects the moon option
+      And the user provides a moonname "<Moonname>"
+      And the user provides a planet id "<PlanetId>"
       And the user hits submit
-    Then the table refreshes "<Moonname>"
-    And  the user is redirected to the homepage
+      Then the table updates moonname "<Moonname>"
+      And  the user is redirected to the homepage
 
       Examples:
         |Moonname                 |PlanetId|
-        |Eureka-3 Fire_2          | 1
-        |90Champion               | 2
-
+        |Eureka-3 Fire_2          | 1      |
+        |90Champion               | 2      |
+        |Hermes-2 Lion-1          | 3      |
 
 
   Scenario Outline:  The user can not add planets with invalid planet data
@@ -46,25 +48,29 @@ Feature: Add Planet and Moon Data
       |                                     |Invalid planet name|
       |Earth                                |Invalid planet name|
 
-  Scenario Outline:  The user can not add moons with invalid moon data
-    When the user provides new valid moonname "<Moonname>"
-    And the user provides new valid Planet ID "<PlanetId>"
+  Scenario Outline:  The user can not add moons with invalid moon name
+    When the user selects the moon option
+    And the user provides a moonname "<Moonname>"
+    And the user provides a planet id "<PlanetId>"
     And the user hits submit
-    Then the table refreshes "<Moonname>"
+    Then the user should get a browser alert for moon "<alert>"
     And  the user is redirected to the homepage
 
     Examples:
-      |Moonname                           |PlanetId|     |alert |
-      |Eureka-3 Fire_2                    | 1            |Invalid moon name|
+      |Moonname                           |PlanetId      |alert            |
       |SulfurCarbonHydrogenMonoxide1990   | 2            |Invalid moon name|
-      |                                   | 1            |Invalid moon name|
-      |Kryptonite3                        |300           |Invalid planet ID|
+      |Eureka-3 Fire_2                    | 2            |Invalid moon name|
+      |                                   | 2            |Invalid moon name|
+      |Krypton)))!!                       | 1            |Invalid moon name|
 
+  Scenario Outline:  The user can not add moons with invalid planet id
+    When the user selects the moon option
+    And the user provides a moonname "<Moonname>"
+    And the user provides a planet id "<PlanetId>"
+    And the user hits submit
+    Then the user should get a browser alert "<alert>"
+    And  the user is redirected to the homepage
 
-
-
-
-
-
-
-
+    Examples:
+      |Moonname                           |PlanetId      |alert            |
+      |Kryptonite3                        |300           |Invalid planet id|

@@ -30,7 +30,7 @@ Feature: User Registration
     |username                       |password                       |alert           |
     |Batman	                        |Krypton-was_2000               |Invalid username|
     |Ca12	                        |Krypton-was_2000               |Invalid username|
-    |wonder_woman_for_the_DC_theming|Krypton-was_2000               |Invalid username|
+    |Californiacaliforniacalifornia3|Krypton-was_2000               |Invalid username|
     |2face	                        |Krypton-was_2000               |Invalid username|
     |joker!!!!!!?)	                |Krypton-was_2000               |Invalid username|
     |            	                |Krypton-was_2000               |Invalid username|
