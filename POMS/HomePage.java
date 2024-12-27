@@ -31,6 +31,18 @@ public class HomePage {
     @FindBy(id = "planetNameInput")
     private WebElement planetNameInput;
 
+    @FindBy(id = "moonNameInput")
+    private WebElement moonNameInput;
+
+    @FindBy(id = "orbitedPlanetInput")
+    private WebElement orbitedPlanetInput;
+
+    @FindBy(id = "deleteInput")
+    private WebElement deleteInput;
+
+    @FindBy(id= "deleteButton")
+    private WebElement deleteButton;
+
     @FindBy(tagName="td")
     private List<WebElement> tableCols;
 
@@ -72,6 +84,12 @@ public class HomePage {
         planetNameInput.sendKeys(planetName);
     }
 
+    public void enterMoonName(String moonName){
+        moonNameInput.sendKeys(moonName);
+    }
+    public void orbitedPlanetId(String planetId){
+        orbitedPlanetInput.sendKeys(planetId);
+    }
 
 
     public Integer getCelestialTableColsSize(){
@@ -84,5 +102,12 @@ public class HomePage {
 
     }
 
+    public void deleteClick(){
+        deleteButton.click();
+    }
+
+    public void deleteInput(String string){
+        deleteInput.sendKeys(string);
+    }
 
 }
